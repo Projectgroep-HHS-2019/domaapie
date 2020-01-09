@@ -20,12 +20,14 @@ http://localhost/RESTAPI/api/measurement/create.php
 Content-Type : application/json
 
 ``Create body
+ `code(
 {
 	"device_id": "1",
 	"date_time": "2020-01-07 20:25",
 	"temperature": "21.1",
 	"humidity": "49.8"
 }
+ )'
 
 ## PUT Request
 By put request we need more then a single url. The request needs headers and a body contains JSON data.
