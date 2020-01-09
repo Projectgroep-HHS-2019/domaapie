@@ -39,6 +39,7 @@ http://localhost/RESTAPI/api/measurement/update.php
 Content-Type : application/json
 
 ``Update body
+``` JSON
 {
 	"device_id": "1",
 	"date_time": "2020-01-07 20:20",
@@ -46,6 +47,7 @@ Content-Type : application/json
 	"humidity": "51.2",
 	"id" : "1"
 }
+ ```
 
 ## DELETE Request
 By delete request we need more then a single url. The request needs headers and a body contains JSON data.
@@ -57,6 +59,8 @@ http://localhost/RESTAPI/api/measurement/create.php
 Content-Type : application/json
 
 ``Update body
+``` JSON
 {
 	"id" : "1"
 }
+```
