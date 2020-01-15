@@ -31,5 +31,4 @@
 
     // Make JSON
     print_r(json_encode($measurement_arr));
-
-    ?>
+?>

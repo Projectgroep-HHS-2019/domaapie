@@ -1,6 +1,6 @@
 <?php
     class Measurement{
-        // DB
+        // DB STUFF
         private $conn;
         private $table = 'measurement';
 
@@ -99,7 +99,7 @@
             $this->date_time = htmlspecialchars(strip_tags($this->date_time));
             $this->temperature = htmlspecialchars(strip_tags($this->temperature));
             $this->humidity = htmlspecialchars(strip_tags($this->humidity));
-        
+
             // Bind data
             $stmt->bindParam(':device_id', $this->device_id);
             $stmt->bindParam(':date_time', $this->date_time);
