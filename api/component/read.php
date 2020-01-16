@@ -14,7 +14,7 @@
     $component = new Component($db);
 
     // Component query
-    $result = $Component->read();
+    $result = $component->read();
 
     // Get row count
     $num = $result->rowCount();
@@ -51,7 +51,7 @@
         }
 
         // Turn into JSON & output
-        echo json_encode($component_arr);
+        echo json_encode($components_arr);
 
     } else {
         // No Component

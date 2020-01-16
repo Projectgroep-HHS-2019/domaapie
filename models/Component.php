@@ -1,5 +1,5 @@
 <?php
-    class Measurement{
+    class Component{
         // DB STUFF
         private $conn;
         private $table = 'component';
@@ -37,8 +37,8 @@
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
-                      tl.type_location as type_location_name,
-                      tl.type_location as type_location_description,
+                      tl.name as type_location_name,
+                      tl.description as type_location_description,
                       c.device_id as device_id,
                       d.name as device_name,
                       d.description as device_description
@@ -51,7 +51,7 @@
                       LEFT JOIN
                         device d ON c.device_id = d.id
                       ORDER BY 
-                        m.date_time DESC';
+                        c.name DESC';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -74,8 +74,8 @@
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
-                      tl.type_location as type_location_name,
-                      tl.type_location as type_location_description,
+                      tl.name as type_location_name,
+                      tl.description as type_location_description,
                       c.device_id as device_id,
                       d.name as device_name,
                       d.description as device_description

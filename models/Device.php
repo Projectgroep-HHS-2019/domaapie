@@ -32,8 +32,8 @@
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
-                      tl.type_location as type_location_name,
-                      tl.type_location as type_location_description
+                      tl.name as type_location_name,
+                      tl.description as type_location_description
                       FROM 
                       ' . $this->table . ' d
                       LEFT JOIN
@@ -63,8 +63,8 @@
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
-                      tl.type_location as type_location_name,
-                      tl.type_location as type_location_description,
+                      tl.name as type_location_name,
+                      tl.description as type_location_description,
                       FROM 
                       ' . $this->table . ' d
                       LEFT JOIN
