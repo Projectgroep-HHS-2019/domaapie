@@ -2,18 +2,22 @@
     class Measurement{
         // DB STUFF
         private $conn;
-        private $table = 'device';
+        private $table = 'component';
 
         //Measurement Properties
         public $id;
         public $name;
         public $description;
+        public $status;
         public $location_id;
         public $location_name;
         public $location_description;
         public $location_type_location_id;
         public $type_location_name;
         public $type_location_description;
+        public $device_id;
+        public $device_name;
+        public $device_description;
         
 
         // Constructor with DB
@@ -21,27 +25,33 @@
             $this->conn = $db;
         }
 
-        // Get Measurements
+        // Get Component
         public function read(){
             //Create query
             $query = 'SELECT
-                      d.id,
-                      d.name,
-                      d.description,
-                      d.location_id,
+                      c.id,
+                      c.name,
+                      c.description,
+                      c.status,
+                      c.location_id,
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
                       tl.type_location as type_location_name,
-                      tl.type_location as type_location_description
+                      tl.type_location as type_location_description,
+                      c.device_id as device_id,
+                      d.name as device_name,
+                      d.description as device_description
                       FROM 
-                      ' . $this->table . ' d
+                      ' . $this->table . ' c
                       LEFT JOIN
-                        location l ON d.location_id = l.id
+                        location l ON c.location_id = l.id
                       LEFT JOIN
                         type_location tl ON l.type_location = tl.id
+                      LEFT JOIN
+                        device d ON c.device_id = d.id
                       ORDER BY 
-                        d.name DESC';
+                        m.date_time DESC';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
@@ -52,26 +62,32 @@
         return $stmt;
         }  
 
-        // Get single Measurement
+        // Get single Component
         public function read_single(){
             //Create query
             $query = 'SELECT
-                      d.id,
-                      d.name,
-                      d.description,
-                      d.location_id,
+                      c.id,
+                      c.name,
+                      c.description,
+                      c.status,
+                      c.location_id,
                       l.name as location_name,
                       l.description as location_description,
                       l.type_location as location_type_location_id,
                       tl.type_location as type_location_name,
                       tl.type_location as type_location_description,
+                      c.device_id as device_id,
+                      d.name as device_name,
+                      d.description as device_description
                       FROM 
-                      ' . $this->table . ' d
+                      ' . $this->table . ' c
                       LEFT JOIN
-                        location l ON d.location_id = l.id
+                        location l ON c.location_id = l.id
                       LEFT JOIN
                         type_location tl ON l.type_location = tl.id
-                      WHERE d.id = :id
+                      LEFT JOIN
+                        device d ON c.device_id = d.id
+                      WHERE c.id = :id
                       LIMIT 0,1';
 
             // Prepare statement
@@ -92,22 +108,27 @@
             $this->id = $row['id'];
             $this->name = $row['name'];
             $this->description = $row['description'];
+            $this->status = $row['status'];
             $this->location_id = $row['location_id'];
             $this->location_name = $row['location_name'];
             $this->location_description = $row['location_description'];
             $this->location_type_location_id = $row['location_type_location_id'];
             $this->type_location_name = $row['type_location_name'];
             $this->type_location_description = $row['type_location_description'];
+            $this->device_id = $row['device_id'];
+            $this->device_name = $row['device_name'];
+            $this->device_description = $row['device_description'];
         }
 
-        // Create Measurement
+        // Create Component
         public function create(){
             //Create query
             $query = 'INSERT INTO ' . 
                 $this-> table . '
                 SET 
                 name = :name,
-                description = :description';
+                description = :description,
+                status = :status';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -115,10 +136,12 @@
             // Clean data
             $this->name = htmlspecialchars(strip_tags($this->name));
             $this->description = htmlspecialchars(strip_tags($this->description));
+            $this->status = htmlspecialchars(strip_tags($this->status));
 
             // Bind data
             $stmt->bindParam(':name', $this->name);
             $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':status', $this->status);
 
             // Execute Query
             if($stmt->execute()){
@@ -131,14 +154,15 @@
             return false;
         }
 
-        // Update Measurement
+        // Update Component
         public function update(){
             //Create query
             $query = 'UPDATE ' . 
                 $this-> table . '
                 SET 
                     name = :name,
-                    description = :description
+                    description = :description,
+                    status = :status
                 WHERE 
                     id = :id';
 
@@ -148,11 +172,13 @@
             // Clean data
             $this->name = htmlspecialchars(strip_tags($this->name));
             $this->description = htmlspecialchars(strip_tags($this->description));
+            $this->status = htmlspecialchars(strip_tags($this->status));
             $this->id = htmlspecialchars(strip_tags($this->id));
         
             // Bind data
             $stmt->bindParam(':name', $this->name);
             $stmt->bindParam(':description', $this->description);
+            $stmt->bindParam(':status', $this->status);
             $stmt->bindParam(':id', $this->id);
 
             // Execute Query
@@ -166,7 +192,7 @@
             return false;
         }
 
-        // Delete Measurement
+        // Delete Component
         public function delete(){
             //Create query
             $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
