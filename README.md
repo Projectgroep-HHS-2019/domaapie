@@ -64,3 +64,7 @@ Content-Type : application/json
 	"id" : "1"
 }
 ```
+
+
+## cuz luiizzzz forgot some shit 
+ALTER TABLE `user` ADD `password` VARCHAR(64) NOT NULL AFTER `name`;

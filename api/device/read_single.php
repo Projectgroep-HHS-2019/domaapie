@@ -26,15 +26,15 @@
 
     // Create array
     $device_arr = array(
-        'id' => $id,
-        'name' => $name,
-        'description' => $description,
-        'location_id' => $location_id,
-        'location_name' => $location_name,
-        'location_description' => $location_description,
-        'location_type_location_id' => $location_type_location_id,
-        'type_location_name' => $type_location_name,
-        'type_location_description' => $type_location_description
+        'id' => $device->id,
+        'name' => $device->name,
+        'description' => $device->description,
+        'location_id' => $device->location_id,
+        'location_name' => $device->location_name,
+        'location_description' => $device->location_description,
+        'location_type_location_id' => $device->location_type_location_id,
+        'type_location_name' => $device->type_location_name,
+        'type_location_description' => $device->type_location_description
         
     );
 
