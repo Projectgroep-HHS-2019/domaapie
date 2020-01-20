@@ -17,9 +17,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
      // Set ID to read
-    $component->id = $data->id;
- 
-    $component->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $component->id = isset($data->id) ? $data->id : die();
 
     // Get Component
     $component->read_single();

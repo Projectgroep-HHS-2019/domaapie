@@ -17,9 +17,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
      // Set ID to read
-    $device->id = $data->id;
- 
-    $device->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $device->id = isset($data->id ? $data->id : die();
 
     // Get device
     $device->read_single();
