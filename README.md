@@ -52,13 +52,13 @@ Content-Type : application/json
 ## DELETE Request
 By delete request we need more then a single url. The request needs headers and a body contains JSON data.
 
-``Update url
+``Delete url
 http://localhost/RESTAPI/api/measurement/create.php
 
-``Update header 
+``Delete header 
 Content-Type : application/json
 
-``Update body
+``Delete body
 ``` JSON
 {
 	"id" : "1"

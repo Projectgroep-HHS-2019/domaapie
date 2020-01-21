@@ -20,7 +20,7 @@
         }
 
          // Get Device Settings by user
-         public function getUserSettings(){
+         public function readUserSettings(){
             //Create query
             $query = 'SELECT
                       id,
@@ -35,23 +35,26 @@
                       ' . $this->table . '
                       WHERE user_id = :user_id';
 
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
 
-        // Clean Data
-        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+            // Clean Data
+            $this->user_id = htmlspecialchars(strip_tags($this->user_id));
             
-        // Bind ID
-        $stmt->bindParam(':user_id', $this->user_id);
+            // Bind ID
+            $stmt->bindParam(':user_id', $this->user_id);
 
-        // Execute query
-        $stmt->execute();
+            // Execute query
+            $stmt->execute();
 
-        return $stmt;
+            // Execute query
+            $stmt->execute();
+
+            return $stmt;
         }  
 
         // Get Setting
-        public function getDeviceSetting(){
+        public function readDeviceSetting(){
             //Create query
             $query = 'SELECT
                       id,
@@ -121,11 +124,11 @@
             // Bind data
             $stmt->bindParam(':user_id', $this->user_id);
             $stmt->bindParam(':device_id', $this->device_id);
-            $stmt->bindParam(':meas_time_interval', $this->user_id);
-            $stmt->bindParam(':min_temperature', $this->device_id);
-            $stmt->bindParam(':max_temperature', $this->user_id);
-            $stmt->bindParam(':min_humidity', $this->device_id);
-            $stmt->bindParam(':max_humidity', $this->device_id);
+            $stmt->bindParam(':meas_time_interval', $this->meas_time_interval);
+            $stmt->bindParam(':min_temperature', $this->min_temperature);
+            $stmt->bindParam(':max_temperature', $this->max_temperature);
+            $stmt->bindParam(':min_humidity', $this->min_humidity);
+            $stmt->bindParam(':max_humidity', $this->max_humidity);
 
             // Execute Query
             if($stmt->execute()){

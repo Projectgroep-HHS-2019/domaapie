@@ -12,7 +12,7 @@
 
     // Instantiate Component
     $component = new Component($db);
-
+    
     // GET ID
     $data = json_decode(file_get_contents("php://input"));
 
@@ -24,19 +24,19 @@
 
     // Create array
     $component_arr = array(
-        'id' => $id,
-        'name' => $name,
-        'description' => $description,
-        'status' => $status,
-        'location_id' => $location_id,
-        'location_name' => $location_name,
-        'location_description' => $location_description,
-        'location_type_location_id' => $location_type_location_id,
-        'type_location_name' => $type_location_name,
-        'type_location_description' => $type_location_description,
-        'device_id' => $device_id,
-        'device_name' => $device_name,
-        'device_description' => $device_description
+        'id' => $component->id,
+        'name' => $component->name,
+        'description' => $component->description,
+        'status' => $component->status,
+        'location_id' => $component->location_id,
+        'location_name' => $component->location_name,
+        'location_description' => $component->location_description,
+        'location_type_location_id' => $component->location_type_location_id,
+        'type_location_name' => $component->type_location_name,
+        'type_location_description' => $component->type_location_description,
+        'device_id' => $component->device_id,
+        'device_name' => $component->device_name,
+        'device_description' => $component->device_description
         
     );
 

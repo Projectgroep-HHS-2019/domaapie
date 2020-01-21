@@ -12,7 +12,7 @@
     // Instantiate DB % connect
     $database = new Database();
     $db = $database->connect();
-6
+
     // Instantiate Device
     $device = new Device($db);
 

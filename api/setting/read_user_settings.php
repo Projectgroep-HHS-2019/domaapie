@@ -13,8 +13,14 @@
     // Instantiate Setting
     $setting = new Setting($db);
 
+    // GET ID
+    $data = json_decode(file_get_contents("php://input"));
+
+    // Set ID to read
+    $setting->user_id = isset($data->user_id) ? $data->user_id : die();
+
     // Setting query
-    $result = $setting->getUserSettings();
+    $result = $setting->readUserSettings();
 
     // Get row count
     $num = $result->rowCount();
@@ -30,14 +36,14 @@
             extract($row);
 
             $setting_item = array(
-                'id' => $setting->id,
-                'user_id' => $setting->user_id,
-                'device_id' => $setting->device_id,
-                'meas_time_interval' => $setting->meas_time_interval,
-                'min_temperature' => $setting->min_temperature,
-                'max_temperature' => $setting->max_temperature,
-                'min_humidity' => $setting->min_humidity,
-                'max_humidity' => $setting->max_humidity         
+                'id' => $id,
+                'user_id' => $user_id,
+                'device_id' => $device_id,
+                'meas_time_interval' => $meas_time_interval,
+                'min_temperature' => $min_temperature,
+                'max_temperature' => $max_temperature,
+                'min_humidity' => $min_humidity,
+                'max_humidity' => $max_humidity         
             );
 
             // Push to "data"

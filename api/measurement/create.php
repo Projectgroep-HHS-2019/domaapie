@@ -20,7 +20,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
     $measurement->device_id = $data->device_id;
-    $measurement->date_time = $data->date_time;
+    $measurement->date_time = date('Y-m-d H:i:s');
     $measurement->temperature = $data->temperature;
     $measurement->humidity = $data->humidity;
 

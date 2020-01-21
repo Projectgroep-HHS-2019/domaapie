@@ -1,10 +1,10 @@
 <?php
-    class Measurement{
+    class Device{
         // DB STUFF
         private $conn;
         private $table = 'device';
 
-        //Measurement Properties
+        //Device Properties
         public $id;
         public $name;
         public $description;
@@ -21,7 +21,7 @@
             $this->conn = $db;
         }
 
-        // Get Measurements
+        // Get Device
         public function read(){
             //Create query
             $query = 'SELECT
@@ -64,7 +64,7 @@
                       l.description as location_description,
                       l.type_location as location_type_location_id,
                       tl.name as type_location_name,
-                      tl.description as type_location_description,
+                      tl.description as type_location_description
                       FROM 
                       ' . $this->table . ' d
                       LEFT JOIN

@@ -20,7 +20,7 @@
     $setting->device_id = isset($data->device_id) ?$data->device_id : die();
 
     // Get setting
-    $setting->getDeviceSetting();
+    $setting->readDeviceSetting();
 
     // Create array
     $setting_arr = array(

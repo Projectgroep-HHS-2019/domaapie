@@ -14,7 +14,7 @@
     $device = new Device($db);
 
     // Device query
-    $result = $Device->read();
+    $result = $device->read();
 
     // Get row count
     $num = $result->rowCount();
@@ -48,7 +48,9 @@
         // Turn into JSON & output
         echo json_encode($devices_arr);
 
-    } else {
+    } 
+    else 
+    {
         // No Devices
         echo json_encode(
             array('message' => 'No Devices found')

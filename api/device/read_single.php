@@ -2,6 +2,10 @@
     // headers
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
+    header('Access-Control-Allow-Methods: GET');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type,
+            Access-Control-Allow-Methods, Authorization, X-Requested-With');
+
 
     include_once '../../config/Database.php';
     include_once '../../models/Device.php';
@@ -16,8 +20,8 @@
     // GET ID
     $data = json_decode(file_get_contents("php://input"));
 
-     // Set ID to read
-    $device->id = isset($data->id ? $data->id : die();
+    // Set ID to read
+    $device->id = isset($data->id) ? $data->id : die();
 
     // Get device
     $device->read_single();
