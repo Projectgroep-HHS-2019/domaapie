@@ -1,5 +1,5 @@
 <?php
-    class Measurement{
+    class Device{
         // DB STUFF
         private $conn;
         private $table = 'device';
